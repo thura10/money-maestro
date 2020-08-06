@@ -1,0 +1,38 @@
+ion-toolbar, ion-header {
+    --min-height: 120px;
+}
+ion-grid {
+    z-index: 2;
+    height: 100%;
+}
+
+ion-input.register-input {
+    --padding-start: 20px;
+    border-radius: 30px;
+    border: 2px solid;
+    --background: rgba(0,0,0,0.2);
+}
+ion-datetime.register-input {
+    border: 2px solid white;
+    border-radius: 30px;
+    --background: rgba(0,0,0,0.2);
+    --padding-start: 20px;
+    --placeholder-color: rgba(255,255,255,0.5);
+}
+
+ion-row {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+ion-text {
+    margin-left: 1rem;
+}
+.btn {
+    --border-color: white;
+    --border-radius: 4px;
+    --border-width: 2px;
+    --border-style: solid;
+}
+.register-input {
+    --color: white;
+}

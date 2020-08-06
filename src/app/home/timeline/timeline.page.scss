@@ -1,0 +1,43 @@
+.transaction-item {
+    --padding-start: 1.6rem;
+    --padding-top: .5rem;
+    --padding-bottom: .5rem;
+    --inner-border-width: 0;
+    --inner-padding-end: 1.7rem;
+    --border-width: 1px 0px 1px 0px;
+}
+.transaction-item ion-label h3 {
+    font-size: 1.1rem;
+}
+.transaction-item ion-label h2 {
+    font-size: 1.3rem;
+    text-align: end;
+}
+.transaction-item ion-label {
+    min-width: 150px;
+}
+.transaction-item ion-icon {
+    margin-left: 1rem;
+}
+ion-item-option {
+    font-size: 1rem;
+    color: white;
+}
+ion-list {
+    padding: 0;
+}
+ion-item-options > button {
+    width: 100px;
+}
+
+ion-item.deleting {
+    transition: transform 300ms;
+    transform: translate3d(-100%, 0, 0) !important;
+}
+ion-item-option.deleting {
+    width: 100%;
+}
+ion-item-option.deleted {
+    transition: transform 300ms;
+    transform: translate3d(-100%, 0, 0);
+}

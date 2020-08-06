@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon style="font-size: 1.6rem;" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="editTransaction()">
+        <ion-icon style="font-size: 1.4rem; --ionicon-stroke-width: 40px" name="pencil-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen=true>
+  <img class="image" *ngIf="transaction.image" [src]="transaction.image">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="8">
+        <ion-text class="ion-text-start">
+          <h2 class="ml">{{transaction.merchant}}</h2>
+          <h2 *ngIf="!transaction.merchant" class="ml">{{transaction.incoming ? 'Income' : 'Expense'}}</h2>
+          <span *ngIf="transaction.merchant" style="margin-left: 1.1rem;">{{transaction.incoming ? 'Income' : 'Expense'}}</span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="4">
+        <ion-text class="ion-text-end" [ngStyle]="{'color': transaction.incoming ? '#37df9c' : 'crimson'}">
+          <h1 class="mr">
+            {{getAmount(transaction.amount)}}
+          </h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-chip (click)="filterCategory(selectedCategory.name)" style="--background: {{selectedCategory.color}}; margin-left: .7rem">
+          <ion-icon style="color: white;" [name]="selectedCategory.icon"></ion-icon>
+          <ion-label>{{selectedCategory.name}}</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="mb-2" size="12">
+        <ion-item-group>
+          <ion-item-divider>
+            <ion-label>Date</ion-label>
+          </ion-item-divider>
+          <ion-item lines="full">
+            <ion-label>{{transaction.day}} {{getMonth(transaction.month)}} {{transaction.year}}</ion-label>
+          </ion-item>
+          <ion-item-divider *ngIf="transaction.tags.length">
+            <ion-label>Tags</ion-label>
+          </ion-item-divider>
+          <ion-item lines="full" *ngIf="transaction.tags.length">
+            <ion-list>
+              <ion-chip *ngFor="let tag of transaction.tags" (click)="filterTag(tag)" style="--background: 'mediumseagreen'">
+                <ion-icon style="color: white" name="pricetag-outline"></ion-icon>
+                <ion-label>{{tag}}</ion-label>
+              </ion-chip>
+            </ion-list>
+          </ion-item>
+          <ion-item-divider *ngIf="transaction.comment">
+            <ion-label>Comment</ion-label>
+          </ion-item-divider>
+          <ion-item lines="full" *ngIf="transaction.comment">
+            <ion-label>{{transaction.comment}}</ion-label>
+          </ion-item>
+  
+        </ion-item-group>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

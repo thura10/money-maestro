@@ -1,5 +1,7 @@
 {
   "name": "moneyMaestro",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

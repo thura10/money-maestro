@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="firstName" class="ion-text-center font-code" color="primary">{{firstName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row style="margin-top: 2rem;">
+      <ion-col>
+        <ion-item (click)="editProfile()" class="btn" button>
+          <ion-button class="pointer-events-none" expand="block" fill="clear"slot="start">
+            <ion-icon class="btn-icon" name="person-circle-outline" color="primary"></ion-icon>
+          </ion-button>
+          <ion-label class="text font-code">Edit Profile</ion-label>  
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item (click)="chooseCurrency()" class="btn" button detail>
+          <ion-button class="pointer-events-none" expand="block" fill="clear"slot="start">
+            <ion-icon class="btn-icon" name="cash-outline" color="primary"></ion-icon>
+          </ion-button>
+          <ion-label class="text font-code">Currency</ion-label> 
+          <ion-text style="margin-right: 1rem;" color="dark" class="ion-text-end">
+            {{currency}}
+          </ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item (click)="changeDarkMode()" class="btn" button>
+          <ion-button class="pointer-events-none" expand="block" fill="clear"slot="start">
+            <ion-icon style="font-size: 1.7rem;" class="btn-icon" name="moon-outline" color="primary"></ion-icon>
+          </ion-button>
+          <ion-label class="text font-code">Dark Mode</ion-label>
+          <ion-toggle class="pointer-events-none" [formControl] = "darkToggle" color="primary"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item class="btn" button>
+          <ion-button expand="block" fill="clear"slot="start">
+            <ion-icon class="btn-icon" name="notifications-circle-outline" color="primary"></ion-icon>
+          </ion-button>
+          <ion-label class="text font-code">Push Notifications</ion-label>
+          <ion-toggle class="pointer-events-none" color="primary"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item (click)="sendFeedback()" class="btn" button detail>
+          <ion-button class="pointer-events-none" expand="block" fill="clear"slot="start">
+            <ion-icon class="btn-icon" name="star-half-outline" color="primary"></ion-icon>
+          </ion-button>
+          <ion-label class="text font-code">Send Feedback</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item (click)="logout()" class="btn" button detail>
+          <ion-button class="pointer-events-none" expand="block" fill="clear"slot="start">
+            <ion-icon class="btn-icon" name="log-out-outline" color="primary"></ion-icon>
+          </ion-button>
+          <ion-label class="text font-code">Log out</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar style="--background: rgb(24,24,24)">
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <img id="landing-logo" [src]="'../../assets/logo.png'">
+      <span id="landing-title" style="color: #37DF9C;" class="font-code">Money Maestro</span>  
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img class="landing-bg" [src]="'../../assets/bg-landing.png'"></ion-img>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="margin-top: 1.5rem;">
+        <ion-text color="white" style="font-size: x-large; text-align: center;">
+          <p class="font-code">Take control of your money</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text color="white" style="font-size: x-large; text-align: center;">
+          <p class="font-code">Analyse your expenses in real time</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row style="position: absolute; bottom: 1rem; width: 99%;">
+      <ion-col size="12">
+        <ion-button fill="solid" color="facebook" strong=true class="btn font-code" expand="block">Login with Facebook</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button  fill="outline" [routerLink] = "['/login']" color="white" strong=true class="btn font-code" expand="block">Login</ion-button>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button fill="outline" [routerLink] = "['/register']" color="white" strong=true class="btn font-code" expand="block">Signup</ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss(false)" fill="clear" slot="icon-only">
+        <ion-icon style="font-size: 25px;" name="close-outline"></ion-icon>
+      </ion-button>  
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="saveProfile()" fill="clear">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid [formGroup]="editGroup">
+    <ion-row style="margin-top: 2rem;">
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input formControlName="firstName" autocomplete="given-name" autofocus=true enterkeyhint="next" inputmode="text" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input formControlName="lastName" autocomplete="family-name" enterkeyhint="next" inputmode="text" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-top: 1.5rem">
+    <ion-col size="12">
+      <ion-item [ngClass]="{'form-invalid': wrongPassword, 'form-valid': !wrongPassword}">
+        <ion-label position="floating">Old Password</ion-label>
+        <ion-input color="primary" (keyup)="wrongPassword = false" formControlName="oldPassword" clearInput clearOnEdit=false autocomplete="old-password" enterkeyhint="next" required=true type="password"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col *ngIf="wrongPassword" size="12">
+      <ion-text color="danger">Incorrect Password</ion-text>
+    </ion-col>
+  </ion-row>  
+
+  <ion-row style="margin-top: 1.5rem;">
+    <ion-col size="12">
+      <ion-item [ngClass]="{'form-invalid': passwordError, 'form-valid': !passwordError}">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input (keyup)="passwordInput()" formControlName="password" clearInput clearOnEdit=false autocomplete="new-password" enterkeyhint="next" required=true type="password"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>  
+  <ion-row>
+    <ion-col size="12">
+      <ion-item [ngClass]="{'form-invalid': passwordError, 'form-valid': !passwordError}">
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input (keyup)="passwordInput()" formControlName="password2" clearInput clearOnEdit=false autocomplete="new-password" enterkeyhint="done" required=true type="password"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col *ngIf="passwordError" size="12">
+      <ion-text color="danger">{{passwordError}}</ion-text>
+    </ion-col>
+  </ion-row>  
+    
+  </ion-grid>
+</ion-content>

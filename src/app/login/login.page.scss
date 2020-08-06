@@ -1,0 +1,27 @@
+ion-toolbar, ion-header {
+    --min-height: 120px;
+}
+ion-grid {
+    z-index: 2;
+    height: 100%;
+}
+
+.login-input {
+    --padding-start: 20px;
+    border-radius: 30px;
+    border: 2px solid;
+    --background: rgba(0,0,0,0.2);
+}
+ion-col {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+ion-text {
+    margin-left: 1rem;
+}
+.btn {
+    --border-color: white;
+    --border-radius: 4px;
+    --border-width: 2px;
+    --border-style: solid;
+}

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-select [formControl] = "length" value="week" interface="popover">
+        <ion-select-option value="week">This Week</ion-select-option>
+        <ion-select-option value="month">This Month</ion-select-option>
+        <ion-select-option value="year">This Year</ion-select-option>
+      </ion-select>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher #refresh slot="fixed" (ionRefresh)="refreshData($event)" pullFactor="0.7" pullMin="80">
+    <ion-refresher-content pullingIcon="arrow-down" pullingText="Pull to refresh" refreshingSpinner="crescent"></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row style="justify-content: center;">
+      <ion-col size="12" sizeMd="10" sizeLg="8" sizeXl="7">
+        <app-bar [barData]="barData" [budget]="budget" [currency]="currency" [length]="length.value"></app-bar>
+      </ion-col>
+    </ion-row>
+    <ion-row style="justify-content: center;">
+      <ion-col size="12" sizeMd="10" sizeLg="8" sizeXl="7">
+        <app-pie-chart (filter)="filterCategory($event)" [pieData]="pieData" [length]="length.value" [currency]="currency"></app-pie-chart>
+      </ion-col>
+    </ion-row>
+    <ion-row style="justify-content: center; margin-bottom: 1rem;">
+      <ion-col size="12" sizeMd="10" sizeLg="8" sizeXl="7">
+        <app-line-chart [lineData]="lineData" [currency]="currency"></app-line-chart>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

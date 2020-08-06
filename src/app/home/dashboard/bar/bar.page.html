@@ -1,0 +1,15 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title class="font-code">Total expense</ion-card-title>
+    <ion-card-subtitle style="margin-top: .75rem; font-size: 1rem" class="text" *ngIf="barData !== undefined"><span class="font-code text-danger">{{currency}}{{barData}}</span> spent this {{length}}</ion-card-subtitle>
+    <ion-skeleton-text *ngIf="barData === undefined" animated style="width: 30%; margin-top: .75rem; height: 12px"></ion-skeleton-text>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-progress-bar [class.bar-overspent-bg]="barData > budget" class="bar" [value]="barData/budget"></ion-progress-bar>
+    <ion-text style="font-size: 1rem;" class="font-code text">
+      <span *ngIf="barData > budget"><span class="text-danger">{{currency}}{{barData - budget}} overspent</span> / {{currency}}{{budget}} budget</span>
+      <span *ngIf="budget >= barData">{{currency}}{{budget - barData}} remaining / {{currency}}{{budget}} budget</span>
+      <ion-skeleton-text *ngIf="barData === undefined" animated style="width: 50%; height: 15px"></ion-skeleton-text>
+    </ion-text>
+  </ion-card-content>
+</ion-card>

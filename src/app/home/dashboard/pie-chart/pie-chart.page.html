@@ -1,0 +1,11 @@
+<ion-card>
+  <ion-card-header *ngIf="pieData">
+    <ion-card-title class="font-code">This {{length}}'s expense</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <chart *ngIf="!emptyDataset" [type]="type" [data]="data" [options]="options"></chart>
+    <ion-text *ngIf="emptyDataset" class="ion-text-center">
+      <h4 style="margin-top: 1rem; margin-bottom: 1rem;">Add more data to see the magic</h4>
+    </ion-text>
+  </ion-card-content>
+</ion-card>

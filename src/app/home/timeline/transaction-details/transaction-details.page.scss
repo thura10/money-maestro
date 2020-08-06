@@ -1,0 +1,23 @@
+.image {
+    object-fit: cover;
+    height: 50%;
+    margin-top: -60px;
+    min-width: 100%;
+}
+ion-toolbar {
+    --background: rgba(0,0,0,0.5);
+    --ion-color-base: rgba(0,0,0,0.5) !important;
+}
+.ml {
+    margin-left: 1rem;
+}
+.mr {
+    margin-right: 1rem;
+}
+.mb-2 {
+    margin-bottom: 2rem;
+}
+ion-item, ion-list {
+    --background: transparent;
+    background: transparent;
+ }

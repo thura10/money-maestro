@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar style="--background: rgb(24,24,24)">
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <img id="landing-logo" [src]="'../../assets/logo.png'">
+      <span id="landing-title" style="color: #37DF9C;" class="font-code">Money Maestro</span>  
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img class="landing-bg" [src]="'../../assets/bg-landing.png'"></ion-img>
+  <ion-grid>
+    <form [formGroup]="loginGroup">
+      <ion-row style="margin-top: 2rem;">
+        <ion-col size="12">
+          <ion-input [ngStyle]="{'borderColor': emailError ? 'crimson' : 'white'}" (ionInput)="emailInput()" formControlName="email" class="login-input" color="white" autocomplete="email" autofocus=true clearInput=true enterkeyhint="next" inputmode="email" required=true type="email"  placeholder="Email"></ion-input>
+        </ion-col>
+        <ion-col *ngIf="emailError" size="12">
+          <ion-text color="danger">{{emailError}}</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: .5rem;">
+        <ion-col size="12">
+          <ion-input [ngStyle]="{'borderColor': passwordError ? 'crimson' : 'white'}" (ionInput)="passwordInput()" formControlName="password" class="login-input" color="white" clearInput=true enterkeyhint="go" required=true type="password"  placeholder="Password"></ion-input>
+        </ion-col>
+        <ion-col *ngIf="passwordError" size="12">
+          <ion-text color="danger">{{passwordError}}</ion-text>
+        </ion-col>
+      </ion-row>  
+    </form>
+
+    <ion-row style="margin-top: 2.5rem;">
+      <ion-col>
+        <ion-button style="--background: #000000; --color: #ffffff" (click)="login()" fill="fill" strong=true class="btn font-code" expand="block">Login</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

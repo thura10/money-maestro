@@ -24,3 +24,114 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@media (prefers-color-scheme: dark) {
+    .date-picker {
+        --background: #202020;
+        color: white;
+    }
+}
+
+body.dark {
+    background-color: #151515;
+    .date-picker {
+        --background: #202020;
+    }
+    ion-refresher {
+        background-color: #151515;
+    }
+}
+body:not(.dark) {
+    background-color: whitesmoke;
+    ion-refresher {
+        background-color: whitesmoke;
+    }
+}
+.font-code {
+    font-family: 'code' !important;
+}
+.ion-color-white {
+    --ion-color-base: var(--ion-color-white);
+    --ion-color-base-rgb: var(--ion-color-white-rgb);
+    --ion-color-contrast: var(--ion-color-white-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-white-contrast-rgb);
+    --ion-color-shade: var(--ion-color-white-shade);
+    --ion-color-tint: var(--ion-color-white-tint);
+}
+.ion-color-facebook {
+    --ion-color-base: var(--ion-color-facebook);
+    --ion-color-base-rgb: var(--ion-color-facebook-rgb);
+    --ion-color-contrast: var(--ion-color-facebook-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-facebook-contrast-rgb);
+    --ion-color-shade: var(--ion-color-facebook-shade);
+    --ion-color-tint: var(--ion-color-facebook-tint);
+}
+.ion-color-primary {
+    --ion-color-base: var(--ion-color-primary);
+    --ion-color-base-rgb: var(--ion-color-primary-rgb);
+    --ion-color-contrast: var(--ion-color-primary-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-primary-contrast-rgb);
+    --ion-color-shade: var(--ion-color-primary-shade);
+    --ion-color-tint: var(--ion-color-primary-tint);
+}
+
+#landing-title {
+    text-align: center;
+    font-size: 1.5rem;
+    width: fit-content;
+    display: inline-block;
+    margin-left: 2.5rem;
+}
+#landing-logo {
+    width: 50px; 
+    height: 50px;
+    border-radius: 10px;
+}
+.landing-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.date-picker {
+    --width: 100%;
+    --max-width: 100%;
+}
+.ion-white-border {
+    --border-color: white;
+    --border-radius: 4px;
+    --border-width: 2px;
+    --border-style: solid;
+}
+.alert-currency-dialog .alert-radio-group {
+    max-height: 335px;
+}
+.alert-feedback-dialog .alert-input-wrapper textarea {
+    height: 4rem;
+}
+.alert-feedback-dialog .alert-wrapper {
+    width: 50%;
+}
+
+.li-ionic4-datePicker {
+    .modal-wrapper {
+        height: 470px;
+        max-height: 100%;
+        width: 312px;
+    }
+    ion-header ion-toolbar {
+        color: var(--ion-color-primary) !important;
+        --background: var(--ion-toolbar-background, var(--ion-background-color, #fff)) !important;    
+    }
+}
+
+.filter-modal .modal-wrapper {
+    height: 70%;
+    margin: auto;
+    width: 80%;
+    max-width: 600px;
+}

@@ -1,0 +1,28 @@
+body.dark .text {
+    color: white;
+}
+body.dark .btn {
+    --border-color: rgba(30,30,30);
+}
+
+body:not(.dark) .text {
+    color: black;
+}
+body:not(.dark) .btn {
+    --border-color: gainsboro;
+}
+
+.btn {
+    --background: transparent;
+    --border-radius: 5px;
+    --border-style: solid;
+    --border-width: 2px;
+    --inner-border-width: 0;
+    --ripple-color: var(--ion-color-primary-shade);
+}
+.btn-icon {
+    font-size: 1.9rem;
+}
+.pointer-events-none {
+    pointer-events: none;
+}

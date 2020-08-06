@@ -1,0 +1,51 @@
+ion-button ion-icon {
+    font-size: 1.6rem;
+}
+ion-row {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.overflow {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.ion-chip-group {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    min-height: 58px;
+    width: 100%;
+}
+.ion-chip-group > ion-input {
+    --padding-start: 8px;
+    min-width: 120px;
+}
+.text-primary {
+    --color: var(--ion-color-primary);
+}
+.text-danger {
+    --color: crimson;
+}
+.highlight-invalid {
+    --highlight-color-valid: crimson;
+}
+.padding-none {
+    --padding-start: 0;
+    --padding-end: 0;
+}
+ion-select {
+    max-width: 100%;
+    padding-left: 0;
+}
+ion-select::part(placeholder),
+ion-select::part(text) {
+  flex: 0 0 auto;
+  font-size: .95rem;
+}
+
+ion-segment ion-segment-button {
+    min-width: 30px;
+}

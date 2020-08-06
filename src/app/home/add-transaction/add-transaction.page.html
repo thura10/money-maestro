@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" fill="clear" slot="icon-only">
+        <ion-icon style="font-size: 25px;" name="close-outline"></ion-icon>
+      </ion-button>  
+    </ion-buttons>
+    <ion-title>Add a transaction</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="addTransaction()" fill="clear">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form [formGroup]="myForm">
+      <ion-row>
+        <ion-col size="4">
+          <ion-button [class.padding-none]="imageUrl" (click)="addPhoto()" id="camera-btn" expand="block">
+            <ion-icon *ngIf="!imageUrl" name="camera-outline"></ion-icon>
+            <img *ngIf="imageUrl" [src]="imageUrl" style="object-fit: cover;">
+          </ion-button>
+        </ion-col>
+        <ion-col size="8"> 
+          <ion-item class="form-input">
+            <ion-label position="floating">Merchant</ion-label>
+            <ion-input enterkeyhint="next" formControlName="merchant"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-item style="margin-right: 0" class="form-input">
+            <ion-select formControlName="incoming" [value]="false" interface="popover">
+              <ion-select-option [value]="false">Expense</ion-select-option>
+              <ion-select-option [value]="true">Income</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="8">
+          <ion-item [class.highlight-invalid] ="amountError" class="form-input">
+            <ion-label [ngClass]="myForm.value.incoming ? 'text-primary' : 'text-danger'" style="flex: 0 0 20px; min-width: 20px; -ms-flex: 0 0 20px;" position="fixed">{{currency}}</ion-label>
+            <ion-input [ngClass]="myForm.value.incoming ? 'text-primary' : 'text-danger'" aria-autocomplete="transaction-amount" enterkeyhint="next" step=".01" inputmode="decimal" type="number" formControlName="amount"></ion-input>
+          </ion-item> 
+        </ion-col>
+        <ion-col size="12">
+          <ion-text *ngIf="amountError" color="danger" style="margin-left: 1rem; font-size: small;">
+            Please enter a valid amount
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="form-input">
+            <ion-label position="fixed">Category</ion-label>
+            <ion-list class="overflow">
+              <ion-chip *ngFor="let category of categories" (click)="selectCategory(category)" style="--background: {{category.color}}">
+                <ion-icon *ngIf="selectedCategory !== category" color="white" [name]="category.icon"></ion-icon>
+                <ion-icon *ngIf="selectedCategory === category" color="white" name="checkmark-circle"></ion-icon>
+                <ion-label color="white">{{category.name}}</ion-label>
+              </ion-chip>
+            </ion-list>
+          </ion-item>  
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="form-input">
+            <ion-label position="floating">Date</ion-label>
+            <ion-datetime formControlName="date" [pickerOptions]="{cssClass: 'date-picker'}" pickerFormat="DD/MMMM/YYYY" displayFormat="DD MMMM YYYY"></ion-datetime>
+          </ion-item>  
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="form-input">
+            <ion-label position="fixed">Tags</ion-label>
+            <div #chipGroup class="ion-chip-group overflow">
+              <ion-input #tagInput [formControl]="tag" enterkeyhint="enter" (keyup.enter)="createChip()" (keydown.space)="createChip()" (keydown.backspace)="removeChip()" (keydown)="unhighlightChip($event)"></ion-input>
+            </div>
+          </ion-item>  
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="form-input">
+            <ion-label position="floating">Comment</ion-label>
+            <ion-input formControlName="comment" enterkeyhint="done"></ion-input>
+          </ion-item>  
+        </ion-col>
+      </ion-row>  
+    </form>
+  </ion-grid>
+</ion-content>
