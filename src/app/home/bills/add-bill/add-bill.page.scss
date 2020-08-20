@@ -1,0 +1,24 @@
+.form-input {
+    margin-top: 1rem;
+    margin-right: .5rem;
+    margin-left: .5rem;
+    border-radius: 6px;
+
+    --highlight-color-invalid: var(--ion-color-primary);
+    --highlight-color-focused: var(--ion-color-primary);
+}
+.form-input:not(.item-has-focus) {
+    --highlight-color-invalid: transparent;
+    --highlight-color-focused: transparent;
+}
+ion-grid {
+    margin-top: 1rem;
+}
+ion-item.highlight-invalid {
+    --highlight-color-invalid: crimson;
+    --highlight-color-focused: crimson;
+}
+
+ion-row {
+    margin-top: 1rem;
+}

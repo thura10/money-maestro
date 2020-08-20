@@ -72,7 +72,7 @@ export class TimelinePage implements OnInit {
     const options = {
       inputDate: this.selectedDate,
       showTodayButton: false,
-      setLabel: 'Go',
+      setLabel: 'Ok',
       closeLabel: 'Cancel', 
       titleLabel: 'Select a Date',
       monthsList: this.monthNames,
@@ -156,7 +156,7 @@ export class TimelinePage implements OnInit {
     })
     await modal.present();
   }
-  async editTransaction(transaction: any, index: number) {
+  async editTransaction(transaction: any) {
     const modal = await this.modalController.create({
       component: EditTransactionPage,
       componentProps: {

@@ -1,9 +1,79 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>bills</ion-title>
+    <ion-title>Bills</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addBill()">
+        <ion-icon style="font-size: 1.6rem;" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="getBills($event)" pullFactor="0.7" pullMin="80">
+    <ion-refresher-content pullingIcon="arrow-down" pullingText="Pull to refresh" refreshingSpinner="crescent"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="bills && bills.length != 0">
+    <ion-item-sliding *ngFor="let bill of bills; index as i">
+      <!-- ANIMATE ONLY ON RE-ADDING BACK -->
+      <ion-item (click)="billOptions(bill, i, $event)" [@items]="bill.animate ? {value: '', params: {duration: 400}} : {value: '', params: {duration: 0}}" class="bill-item" button>
+        <ion-label class="pointer-events-none" slot="start">
+          <h3 [class.text-paid]="checkPaid(bill)">
+            {{bill.name}}
+          </h3>
+          <p>
+            {{getBillLabel(bill)}}
+          </p>
+        </ion-label> 
+        <ion-label class="pointer-events-none" slot="end">
+          <h2 [ngStyle]="{'color': checkPaid(bill) ? 'grey' : 'crimson'}">
+            {{currency}} {{bill.amount}}
+          </h2>
+          <p *ngIf="checkDueDate(bill)" style="color: crimson" class="ion-text-end">
+            Due Today
+          </p>
+          <p *ngIf="checkPaid(bill)" style="color: grey" class="ion-text-end">
+            Paid
+          </p>
+        </ion-label> 
+      </ion-item>
+      <ion-item-options (ionSwipe)="deleteSlide(bill, i, $event)" side="end">
+        <ion-item-option color="primary" (click)="editBill(bill, i)" mode="ios">
+          Edit
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="deleteBtn(bill, i, $event)" expandable mode="ios">
+          Delete
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <div *ngIf="!bills">
+    <ion-list>
+      <ion-item class="bill-item" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label slot="start">
+          <h3>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+        <ion-label slot="end">
+          <h2>
+            <ion-skeleton-text animated style="width: 100%; margin-left: 4rem;"></ion-skeleton-text>
+          </h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-text *ngIf="bills && bills.length == 0" size="large" class="ion-text-center">
+   <h4 style="margin: 2rem;" class="ion-text-center">You can add bills to remind you when it's due</h4>
+  </ion-text>
 
 </ion-content>

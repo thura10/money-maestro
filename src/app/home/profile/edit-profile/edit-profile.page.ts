@@ -12,6 +12,8 @@ export class EditProfilePage implements OnInit {
 
   @Input() uid: string;
   @Input() email: string;
+  @Input() facebookLinked: boolean;
+  @Input() providerLength: number;
   user: any;
 
   editGroup: FormGroup;
@@ -33,7 +35,7 @@ export class EditProfilePage implements OnInit {
     this.userService.getUserPrefs(this.uid).subscribe(res => {
       this.user = res.data();
       this.editGroup.setValue({firstName: this.user.firstName, lastName: this.user.lastName, email: this.email, password: '', password2: '', oldPassword: ''})
-    })
+    });
   }
 
   dismiss(edit: boolean) {
@@ -68,10 +70,8 @@ export class EditProfilePage implements OnInit {
   }
   updatePassword() {
     if (this.editGroup.value.password != '') {
-      this.userService.login(this.email, this.editGroup.value.oldPassword)
-      .then(res => {
-
-        this.userService.updatePassword(this.editGroup.value.password)
+      if (this.facebookLinked && this.providerLength == 1) {
+        this.userService.passwordLink(this.email, this.editGroup.value.password)
         .then(res => {
           this.dismiss(true);
         })
@@ -79,10 +79,25 @@ export class EditProfilePage implements OnInit {
           console.log(err)
           this.dismiss(true);
         })
-      })
-      .catch(err => {
-        this.wrongPassword = true;
-      })
+      }
+      else {
+        this.userService.login(this.email, this.editGroup.value.oldPassword)
+        .then(res => {
+  
+          this.userService.updatePassword(this.editGroup.value.password)
+          .then(res => {
+            this.dismiss(true);
+          })
+          .catch(err => {
+            console.log(err)
+            this.dismiss(true);
+          })
+        })
+        .catch(err => {
+          this.wrongPassword = true;
+        })
+  
+      }
     }
     else {
       this.dismiss(true);
@@ -91,6 +106,10 @@ export class EditProfilePage implements OnInit {
 
   passwordInput() {
     if (this.passwordError) {this.passwordError = null}
+  }
+
+  fbLink() {
+    this.userService.fbLink();
   }
 
 }

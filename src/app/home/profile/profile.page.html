@@ -42,12 +42,12 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-item class="btn" button>
+        <ion-item (click)="changePush()" class="btn" button>
           <ion-button expand="block" fill="clear"slot="start">
             <ion-icon class="btn-icon" name="notifications-circle-outline" color="primary"></ion-icon>
           </ion-button>
           <ion-label class="text font-code">Push Notifications</ion-label>
-          <ion-toggle class="pointer-events-none" color="primary"></ion-toggle>
+          <ion-toggle class="pointer-events-none" [formControl] = "pushToggle" color="primary"></ion-toggle>
         </ion-item>
       </ion-col>
     </ion-row>

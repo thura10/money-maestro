@@ -18,6 +18,33 @@ export class UserService {
   login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
   }
+
+  fbLogin() {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('user_birthday');
+
+    this.afAuth.auth.signInWithRedirect(provider);
+  }
+  getFbResult() {
+    return this.afAuth.auth.getRedirectResult();
+  }
+  fbLink() {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('user_birthday');
+
+    return this.afAuth.auth.currentUser.linkWithRedirect(provider);
+  }
+  passwordLink(email: string, password: string) {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('user_birthday');
+    return new Promise((resolve) => {
+      this.afAuth.auth.signInWithPopup(provider).then(res => {
+        const credential = firebase.auth.EmailAuthProvider.credential(email, password);
+        resolve(this.afAuth.auth.currentUser.linkWithCredential(credential));
+      });
+    })
+  }
+
   register(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
   }
@@ -84,8 +111,20 @@ export class UserService {
   editTransaction(uid: string, id: any, data: any) {
     return this.afStore.collection('users').doc(uid).collection('transactions').doc(id).update(data)
   }
-
   getFilteredTransactions(uid: string) {
     return this.afStore.collection('users').doc(uid).collection('transactions').ref
+  }
+
+  addBill(uid: string, bill: any) {
+    return this.afStore.collection('users').doc(uid).collection('bills').add(bill)
+  }
+  getBills(uid: string) {
+    return this.afStore.collection('users').doc(uid).collection('bills').ref
+  }
+  deleteBill(uid: string, id: string) {
+    return this.afStore.collection('users').doc(uid).collection('bills').doc(id).delete()
+  }
+  editBill(uid: string, id: string, data: any) {
+    return this.afStore.collection('users').doc(uid).collection('bills').doc(id).update(data);
   }
 }

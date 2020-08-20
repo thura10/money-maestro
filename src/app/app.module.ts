@@ -19,6 +19,7 @@ import { Camera } from '@ionic-native/camera/ngx'
 import { ImagePicker } from "@ionic-native/image-picker/ngx";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     SplashScreen,
     Camera,
     ImagePicker,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

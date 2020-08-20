@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss(false)">
+        <ion-icon style="font-size: 1.6rem;" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add a bill</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addBill()">
+        <ion-label color="primary">Save</ion-label>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid [formGroup]="myForm">
+    <ion-row>
+      <ion-col size="12">
+        <ion-item [class.highlight-invalid]= "nameError && myForm.controls['name'].invalid" class="form-input highlight">
+          <ion-label position="floating">Name</ion-label>
+          <ion-input (keyup)="nameError= false" formControlName="name" autocapitalize="on" autofocus enterkeyhint="next" inputmode="text" type="text" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-text *ngIf="nameError && myForm.controls['name'].invalid" color="danger" style="margin-left: 1rem; font-size: small;">
+          Please enter a name
+        </ion-text>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item style="--background: transparent; --inner-border-width: 0;" class="form-input">
+          <ion-label position="fixed">Recurring:</ion-label>
+          <ion-toggle formControlName="recurring"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item [class.highlight-invalid]= "amountError && myForm.controls['amount'].invalid" class="form-input highlight" style="margin-top: 0;">
+          <ion-label position="fixed">Amount:</ion-label>
+          <ion-label position="fixed" style="flex:0 0 30px; min-width: 30px;">{{currency}}</ion-label>
+          <ion-input (keyup)="amountError= false" formControlName="amount" enterkeyhint="next" inputmode="decimal" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-text *ngIf="amountError && myForm.controls['amount'].invalid" color="danger" style="margin-left: 1rem; font-size: small;">
+          Please enter a valid amount
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item class="form-input">
+          <ion-label position="fixed">Due Date:</ion-label>
+          <ion-datetime formControlName="date" [pickerOptions]="{cssClass: 'date-picker'}" [pickerFormat]="myForm.value.recurring ? 'DD' : 'DD MMMM YYYY'" [displayFormat]="myForm.value.recurring ? 'DD' : 'DD MMMM YYYY'"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { ChartOptions } from 'chart.js';
 
 @Component({
@@ -10,6 +10,8 @@ export class LineChartPage implements OnInit, OnChanges {
 
   @Input() currency: string;
   @Input() lineData: any;
+
+  @Output() filter = new EventEmitter<boolean>();
 
   type = 'line';
   data: any;
@@ -81,7 +83,7 @@ export class LineChartPage implements OnInit, OnChanges {
             return currency + tooltipItem.value;
           }
         }
-      }
+      },
     }
   }
 }

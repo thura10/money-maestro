@@ -154,5 +154,9 @@ export class DashboardPage implements OnInit {
     })
     await modal.present();
   }
+  
+  async filterMonth(event) {
+    console.log(event);
+  }
 }
 

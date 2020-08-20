@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/user.service';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { EditProfilePage } from './edit-profile/edit-profile.page';
 
 @Component({
@@ -12,21 +12,53 @@ import { EditProfilePage } from './edit-profile/edit-profile.page';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private alertController: AlertController, private modalController: ModalController) { }
+  constructor(private userService: UserService, private router: Router, private alertController: AlertController, private modalController: ModalController, private toastController: ToastController) { }
   
   uid: string;
   email: string;
 
   firstName: string;
   dark: boolean;
+  push:boolean = true;
   currency: string;
 
-  darkToggle = new FormControl(this.dark)
+  facebookLinked: boolean;
+  providerLength: number;
+
+  darkToggle = new FormControl(this.dark);
+  pushToggle = new FormControl();
 
   ngOnInit() {
     this.currency = sessionStorage.getItem('currency');
 
+    this.userService.getFbResult()
+    .then(async (res) => {
+      if (res.user) {
+        const toast = await this.toastController.create({
+          message: 'Account Linked',
+          duration: 4000
+        })
+        toast.present();
+      }
+    })
+    .catch(async (err) => {
+      console.log(err);
+      const toast = await this.toastController.create({
+        message: err.message,
+        duration: 4000
+      })
+      toast.present();
+    })
+
     this.userService.checkLoggedIn().subscribe(res => {
+      if (!res) return;
+      for (let provider of res.providerData) {
+        if (provider.providerId == 'facebook.com') {
+          this.facebookLinked = true;
+        }
+      }
+      this.providerLength = res.providerData.length;
+
       this.uid = res.uid;
       this.email = res.email;
       this.userService.getUserPrefs(this.uid).subscribe(res => {
@@ -47,6 +79,11 @@ export class ProfilePage implements OnInit {
     this.updateDarkMode();
 
     this.darkToggle.setValue(this.dark);
+
+    if (localStorage.getItem('push') !== 'false') {
+      this.pushToggle.setValue(true);
+    }
+    else {this.push = false}
   }
   
   changeDarkMode() {
@@ -61,6 +98,17 @@ export class ProfilePage implements OnInit {
     }
     else {
       localStorage.setItem('dark', this.dark.toString());
+    }
+  }
+
+  changePush() {
+    this.push = !this.push;
+    this.pushToggle.setValue(this.push);
+    if (this.push) {
+      localStorage.removeItem("push");
+    }
+    else {
+      localStorage.setItem("push", "false");
     }
   }
 
@@ -160,7 +208,9 @@ export class ProfilePage implements OnInit {
       component: EditProfilePage,
       componentProps: {
         uid: this.uid,
-        email: this.email
+        email: this.email,
+        facebookLinked: this.facebookLinked,
+        providerLength: this.providerLength
       }
     })
     await modal.present();

@@ -28,7 +28,7 @@
     </ion-row>
     <ion-row style="justify-content: center; margin-bottom: 1rem;">
       <ion-col size="12" sizeMd="10" sizeLg="8" sizeXl="7">
-        <app-line-chart [lineData]="lineData" [currency]="currency"></app-line-chart>
+        <app-line-chart [lineData]="lineData" [currency]="currency" (filter)="filterMonth($event)"></app-line-chart>
       </ion-col>
     </ion-row>
   </ion-grid>

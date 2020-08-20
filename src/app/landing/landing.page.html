@@ -26,7 +26,7 @@
     </ion-row>
     <ion-row style="position: absolute; bottom: 1rem; width: 99%;">
       <ion-col size="12">
-        <ion-button fill="solid" color="facebook" strong=true class="btn font-code" expand="block">Login with Facebook</ion-button>
+        <ion-button (click)="fbLogin()" fill="solid" color="facebook" strong=true class="btn font-code" expand="block">Login with Facebook</ion-button>
       </ion-col>
       <ion-col size="12">
         <ion-button  fill="outline" [routerLink] = "['/login']" color="white" strong=true class="btn font-code" expand="block">Login</ion-button>

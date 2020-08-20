@@ -15,8 +15,7 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-refresher #refresh slot="fixed" (ionRefresh)="updateData($event)" pullFactor="0.7" pullMin="80">
+  <ion-refresher slot="fixed" (ionRefresh)="updateData($event)" pullFactor="0.7" pullMin="80">
     <ion-refresher-content pullingIcon="arrow-down" pullingText="Pull to refresh" refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
 
