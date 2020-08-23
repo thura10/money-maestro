@@ -51,6 +51,9 @@ export class UserService {
   setUserDetails(uid: string, data: any) {
     return this.afStore.collection('users').doc(uid).set(data);
   }
+  setBudget(uid: string, budget: number) {
+    return this.afStore.collection('users').doc(uid).update({budget: budget});
+  }
 
   logout() {
     return this.afAuth.auth.signOut()

@@ -21,6 +21,7 @@ export class ProfilePage implements OnInit {
   dark: boolean;
   push:boolean = true;
   currency: string;
+  budget: number = 0;
 
   facebookLinked: boolean;
   providerLength: number;
@@ -64,6 +65,7 @@ export class ProfilePage implements OnInit {
       this.userService.getUserPrefs(this.uid).subscribe(res => {
         this.firstName = res.data().firstName;
         this.currency = res.data().currency;
+        this.budget = res.data().budget;
         sessionStorage.setItem('currency', this.currency);
       })
     })
@@ -170,6 +172,34 @@ export class ProfilePage implements OnInit {
         }
       ]
     });
+    await alert.present();
+  }
+
+  async changeBudget() {
+    const alert = await this.alertController.create({
+      header: "Enter your budget for a month",
+      inputs: [{
+        name: 'budget',
+        type: 'number',
+        placeholder: "Budget",
+        value: this.budget
+      }],
+      buttons: [
+        {
+          role: 'cancel',
+          text: 'Cancel'
+        }, {
+          text: 'Save',
+          handler: (data) => {
+            this.userService.setBudget(this.uid, data.budget)
+            .then(res => {
+              this.budget = data.budget
+            })
+            .catch(err => console.log(err));
+          }
+        }
+      ]
+    })
     await alert.present();
   }
 

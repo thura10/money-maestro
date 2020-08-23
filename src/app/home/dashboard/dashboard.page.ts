@@ -73,7 +73,7 @@ export class DashboardPage implements OnInit {
     //get data for pie chart and bar
     this.listener = this.userService.getDashboardData(this.uid, this.length.value).onSnapshot((res) => {
       let length = this.length.value;
-      this.transactions = res.docs.map(doc => doc.data());
+      this.transactions = res.docs.map(doc => Object.assign(doc.data(), {id: doc.id}));
       this.processData();
       if (event) event.target.complete();
        //get data for line graph
@@ -155,8 +155,5 @@ export class DashboardPage implements OnInit {
     await modal.present();
   }
   
-  async filterMonth(event) {
-    console.log(event);
-  }
 }
 

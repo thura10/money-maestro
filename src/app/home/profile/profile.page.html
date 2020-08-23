@@ -31,6 +31,19 @@
     </ion-row>
     <ion-row>
       <ion-col>
+        <ion-item (click)="changeBudget()" class="btn" button detail>
+          <ion-button class="pointer-events-none" expand="block" fill="clear"slot="start">
+            <ion-icon class="btn-icon" name="wallet-outline" color="primary"></ion-icon>
+          </ion-button>
+          <ion-label class="text font-code">Budget</ion-label> 
+          <ion-text style="margin-right: 1rem;" color="dark" class="ion-text-end">
+            {{currency + ' ' + budget}}
+          </ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
         <ion-item (click)="changeDarkMode()" class="btn" button>
           <ion-button class="pointer-events-none" expand="block" fill="clear"slot="start">
             <ion-icon style="font-size: 1.7rem;" class="btn-icon" name="moon-outline" color="primary"></ion-icon>

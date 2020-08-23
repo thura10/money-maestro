@@ -100,7 +100,7 @@ export class TransactionDetailsPage implements OnInit {
   filterCategory(category: string) {
     this.userService.getFilteredTransactions(this.uid).where('category', '==', category).get()
     .then(res => {
-      const data = res.docs.map(doc => doc.data());
+      const data = res.docs.map(doc => Object.assign(doc.data(), {id: doc.id}));
       this.filterResults(data);
     })
   }
@@ -108,7 +108,7 @@ export class TransactionDetailsPage implements OnInit {
   filterTag(tag: string) {
     this.userService.getFilteredTransactions(this.uid).where('tags', 'array-contains', tag).get()
     .then(res => {
-      const data = res.docs.map(doc => doc.data());
+      const data = res.docs.map(doc => Object.assign(doc.data(), {id: doc.id}));
       this.filterResults(data);
     })
   }

@@ -171,7 +171,6 @@ export class TimelinePage implements OnInit {
   async filter() {
     const modal = await this.modalController.create({
       component: FilterPage,
-      cssClass: 'filter-modal',
       componentProps: {
         currency: this.currency,
         uid: this.uid,
