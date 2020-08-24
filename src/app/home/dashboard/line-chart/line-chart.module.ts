@@ -14,7 +14,6 @@ import { LineChartPage } from './line-chart.page';
     FormsModule,
     IonicModule,
     LineChartPageRoutingModule
-  ],
-  declarations: [LineChartPage]
+  ]
 })
 export class LineChartPageModule {}

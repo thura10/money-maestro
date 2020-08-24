@@ -14,7 +14,6 @@ import { PieChartPage } from './pie-chart.page';
     FormsModule,
     IonicModule,
     PieChartPageRoutingModule
-  ],
-  declarations: [PieChartPage]
+  ]
 })
 export class PieChartPageModule {}

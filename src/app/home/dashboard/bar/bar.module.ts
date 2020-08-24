@@ -14,7 +14,6 @@ import { BarPage } from './bar.page';
     FormsModule,
     IonicModule,
     BarPageRoutingModule
-  ],
-  declarations: [BarPage]
+  ]
 })
 export class BarPageModule {}
